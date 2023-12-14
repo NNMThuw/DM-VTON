@@ -21,7 +21,7 @@ def run_test_pf(
 ):
     metrics = {}
 
-    result_dir = Path(save_dir) / 'results'
+    result_dir = Path('/content/DM-VTON/runs/test/DM-VTON_demo/results')
     tryon_dir = result_dir / 'tryon'
     visualize_dir = result_dir / 'visualize'
     tryon_dir.mkdir(parents=True, exist_ok=True)
@@ -73,7 +73,7 @@ def run_test_pf(
                     normalize=True,
                     value_range=(-1, 1),
                 )
-
+    '''
     fid = calculate_fid_given_paths(
         paths=[str(img_dir), str(tryon_dir)],
         batch_size=50,
@@ -93,7 +93,7 @@ def run_test_pf(
         f'Speed: %.1fms per image {real_image.size()}'
         % t,
     )
-
+    
     # Memory
     mem_params = sum([param.nelement()*param.element_size() for param in pipeline.parameters()])
     mem_bufs = sum([buf.nelement()*buf.element_size() for buf in pipeline.buffers()])
@@ -112,7 +112,8 @@ def run_test_pf(
         shutil.rmtree(result_dir)
     else:
         print_log(log_path, f'Results are saved at {result_dir}')
-
+    '''
+    metrics = 0
     return metrics
 
 
